@@ -856,7 +856,10 @@ func New(configDir, dataDir string, modules ...Module) (*Notebrew, error) {
 				return nil, fmt.Errorf("unable to provision namespace for module %s (preferred namespace: %s)", id, preferredNamespace)
 			}
 		}
-		module.Initialize(nbrew, namespace)
+		err = module.Initialize(nbrew, namespace)
+		if err != nil {
+			return nil, fmt.Errorf("initializing module %s: %w", err)
+		}
 	}
 	return nbrew, nil
 }
