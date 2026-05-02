@@ -858,7 +858,7 @@ func New(configDir, dataDir string, modules ...Module) (*Notebrew, error) {
 		}
 		err = module.Initialize(nbrew, namespace)
 		if err != nil {
-			return nil, fmt.Errorf("initializing module %s: %w", err)
+			return nil, fmt.Errorf("initializing module %s: %w", id, err)
 		}
 	}
 	return nbrew, nil
