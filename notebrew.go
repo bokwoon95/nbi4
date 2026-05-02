@@ -860,6 +860,12 @@ func New(configDir, dataDir string, modules ...Module) (*Notebrew, error) {
 		if err != nil {
 			return nil, fmt.Errorf("initializing module %s: %w", id, err)
 		}
+		previousModule, ok := nbrew.Modules[namespace]
+		if ok {
+			return nil, fmt.Errorf("module %s: registered namespace %s twice (previous module: %s)", id, namespace, previousModule.ID())
+		}
+		nbrew.Modules[namespace] = module
+		nbrew.ModuleNamespaces = append(nbrew.ModuleNamespaces, namespace)
 	}
 	return nbrew, nil
 }
