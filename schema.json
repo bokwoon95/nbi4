@@ -1,9 +1,9 @@
 [
   {
-    "table": "module_namespace",
+    "table": "module",
     "columns": [
       {
-        "column": "module",
+        "column": "id",
         "type": {
           "default": "VARCHAR(500)"
         },

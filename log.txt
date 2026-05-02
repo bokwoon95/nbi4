@@ -5,3 +5,25 @@ sq/fetch_exec.go
 stacktrace/stacktrace.go
 schema_database.json
 schema.go
+sqlite_cgo.go
+sqlite_nocgo.go
+object_storage.go
+id.go
+notebrew.go
+
+new(notes.Module)
+
+notebrew.New()
+
+notes.NewModule(), blogs.NewModule(),
+
+ModuleNamespaces []string
+
+Modules map[string]Module
+
+notebrew.com/notes/
+notebrew.com/photos/
+notebrew.com/blogs/
+
+/static/notebrew.min.js
+/static/notebrew.min.css

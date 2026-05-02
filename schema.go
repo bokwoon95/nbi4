@@ -9,8 +9,8 @@ import (
 	"github.com/bokwoon95/sqddl/ddl"
 )
 
-//go:embed schema_database.json
-var databaseSchemaBytes []byte
+//go:embed schema.json
+var schemaJSON []byte
 
 type Table struct {
 	Table      string
