@@ -11,7 +11,10 @@ object_storage.go
 id.go
 notebrew.go
 
+new(users.Module)
 new(notes.Module)
+new(photos.Module)
+new(blogs.Module)
 
 notebrew.New()
 
@@ -27,3 +30,58 @@ notebrew.com/blogs/
 
 /static/notebrew.min.js
 /static/notebrew.min.css
+
+type Module interface{
+    ServeHTTP(w, r)
+}
+
+type Module interface{
+    Initialize(*Notebrew, namespace string)
+    ServeHTTP(w, r)
+}
+
+namespace, err := NegotiateNamespace("github.com/bokwoon95/notebrew/notes", "notes")
+if err != nil {
+}
+notesModule, err := notes.NewModule(nbrew, namespace)
+if err != nil {
+}
+err := nbrew.RegisterModule("github.com/bokwoon95/notebrew/notes", "notes", notes.NewModule)
+if err != nil {
+}
+
+nbrew.RegisterHandler(new(notes.Module))
+
+HandlerNamespaces []string
+Handlers map[string]http.Handler
+
+TODO: how does a module register its domain + pathHead? (wildcards allowed for either)
+TODO: how does a module register its sidebar item href + textContent? (multiple links allowed)
+TODO: convert configDir from a string to an fs.FS so that we can indirect configuration to a virtual filesystem
+TODO: add an inbuilt restart server system based on a event channel so that when the config files in the virtual filesystem changes, we can
+    TODO: we need to initialize an existing server alongside the currently running one and gracefully swap them out; if we fail to initialize the new instance of the server because of some config error, the old one must keep running. In fact uhhh we need some way to swap back to the old config (need to keep a copy?) when that happens in case a bad config keeps the server down.
+
+RE: trailing slashes, we don't have to force a decision on modules because it can be up to them to decide. We'll just cleanPath == strings.TrimRight(r.URL.Path, "/") when doing the comparison so that we don't allocate and it still works.
+
+notebrew.com/notebrew/users/login
+notebrew.com/notebrew/static
+
+notebrew.com/nbrew/login
+notebrew.com/nbrew/static
+
+notebrew.com/n/users/login
+notebrew.com/n/static
+
+notebrew.com/d/users/login
+notebrew.com/d/static
+
+module
+
+nbrew.GetUser(r) (User, error)
+nbrew.ExecuteTemplate(w, r, tmpl, data any)
+nbrew.Error(w, r, statusCode int, err error)
+nbrew.GetFlashSession(?)
+nbrew.SetFlashSession(?)
+
+nbrew.Error(w, r, http.StatusInternalServerError, err)
+nbrew.Error(w, r, http.StatusBadRequest, err)

@@ -39,6 +39,8 @@ import (
 )
 
 type Notebrew struct {
+	Namespace string
+
 	// DB is the DB associated with the notebrew instance.
 	DB *sql.DB
 
