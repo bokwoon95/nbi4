@@ -55,6 +55,12 @@ nbrew.RegisterHandler(new(notes.Module))
 HandlerNamespaces []string
 Handlers map[string]http.Handler
 
+type Module struct{
+    Domain string
+    Namespace string
+}
+map[string]map[string]Module
+
 TODO: how does a module register its domain + pathHead? (wildcards allowed for either)
 TODO: how does a module register its sidebar item href + textContent? (multiple links allowed)
 TODO: convert configDir from a string to an fs.FS so that we can indirect configuration to a virtual filesystem
