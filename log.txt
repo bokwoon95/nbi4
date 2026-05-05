@@ -61,6 +61,12 @@ type Module struct{
 }
 map[string]map[string]Module
 
+notebrew config nbrew sidebar xxxx
+- this configures the available links in the sidebar, complete with href and textContent (and is extensible). modules simply have to read this config from the configFS and respond accordingly.
+
+// Register simply attaches the handlers to the Handlers map. The Handlers map is only for the Domain. Modules can also register the catch-all handler for all other domains. In the primary domain, any namespace that is not registered is an automatic 404. There is no way to add a catch-all handler for unknown namespaces, only to register known namespaces.
+err := notes.Register(nbrew, namespace)
+
 TODO: how does a module register its domain + pathHead? (wildcards allowed for either)
 TODO: how does a module register its sidebar item href + textContent? (multiple links allowed)
 TODO: convert configDir from a string to an fs.FS so that we can indirect configuration to a virtual filesystem
