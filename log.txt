@@ -58,7 +58,7 @@ Handlers map[string]http.Handler
 type Module struct{
     Domain string
     Namespace string
-    ConfigCmd(configFS fs.FS, args ...string)
+    ConfigCmd(configFS notebrew.FS, args ...string)
     ServeHTTP(w, r)
 }
 map[string]map[string]Module
