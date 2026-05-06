@@ -55,13 +55,13 @@ nbrew.RegisterHandler(new(notes.Module))
 HandlerNamespaces []string
 Handlers map[string]http.Handler
 
-type Module struct{
-    Domain string
-    Namespace string
+type Module interface{
+    Namespace() string
     ConfigCmd(configFS notebrew.FS, args ...string)
     ServeHTTP(w, r)
 }
-map[string]map[string]Module
+Modules map[string]Module
+WildcardDomainModule Module
 
 notebrew config nbrew sidebar xxxx
 - this configures the available links in the sidebar, complete with href and textContent (and is extensible). modules simply have to read this config from the configFS and respond accordingly.
