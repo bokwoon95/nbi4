@@ -11,6 +11,15 @@ object_storage.go
 id.go
 notebrew.go
 
+CREATE TABLE nbrew_list_item (
+    list_name VARCHAR(500)
+    ,item_name VARCHAR(500)
+    ,item_value TEXT
+    ,date_created TIMESTAMP
+    ,date_edited TIMESTAMP
+    ,PRIMARY KEY (list_name, item_name)
+);
+
 new(users.Module)
 new(notes.Module)
 new(photos.Module)
