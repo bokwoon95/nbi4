@@ -11,6 +11,18 @@ object_storage.go
 id.go
 notebrew.go
 
+notes.NewModule(nbrew)
+
+notebrew config nbrew
+
+CREATE TABLE nbrew_config (
+    domain VARCHAR(500)
+    ,key VARCHAR(500)
+    ,value TEXT
+    ,created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ,updated_time TIMESTAMP
+);
+
 CREATE TABLE nbrew_list_item (
     list_name VARCHAR(500)
     ,item_name VARCHAR(500)
